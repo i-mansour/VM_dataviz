@@ -58,7 +58,7 @@ Now read [section 3.4 - Common Problems](https://r4ds.had.co.nz/data-visualisati
 
 ## Data Visualization time
 
-Do y'all know about open science? This is a movement in the science world that values transparency throughout the scientific process. This can include publishing open access papers, making data and code available, and even posting information about experimental design and data collection. For our exercise today, we are going to use data that is publicly available through the Open Science Framework (OSF).
+Do y'all know about open science? This is a movement in the science community that values transparency throughout the scientific process. This can include publishing open access papers, making data and code available, and even posting information about experimental design and data collection. For our exercise today, we are going to use data that is publicly available through the Open Science Framework (OSF).
 
 This data comes from [Domeignoz-Horta et al. 2020](https://doi.org/10.1038/s41467-020-17502-z). It would be a good idea now to take a few minutes to skim through the paper. What was their research question? What was their experimental design? Take a look at their figures and their main findings.
 

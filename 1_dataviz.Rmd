@@ -90,7 +90,7 @@ ggplot(data = data, mapping = aes(X, Y)) +
 
 Add error bars to your plots. How does this improve your ability to understand the data?
 
-What happens if you include multiple geoms in the same plot? Personally, I sometimes like violin plots (so I can better see the distribution of the data) with the raw data points plotted on top. Try combining geom_violin, geom_jitter and error bars in the same plot.
+What happens if you include multiple geoms in the same plot? For some types of data, I like combining violin plots (so I can better see the distribution of the data) with the raw data points plotted on top (so I can see. Try combining geom_violin, geom_jitter and error bars in the same plot.
 
 *Paste this plot into the activity sheet. Do you think this combination is better or worse than the individual plots from Part 1? Why?*
 
@@ -104,7 +104,7 @@ It might be easier to understand what's happening with all 3 of these variables 
 
 Finally, create a plot where one abiotic variable is mapped to a plot aesthetic and the other is used to facet the plot.
 
-*Copy your final plot into the worksheet. Now that you have explored this data, what can you say about the effects of soil microbial diversity on CUE? Is this affected by temperature or moisture?*
+*Which of the plots from the section did you find the most informative and why? Copy this plot into the worksheet. Now that you have explored this data, what can you say about the effects of soil microbial diversity on CUE? Is this affected by temperature or moisture? If so, how?*
 
 *Remember, we have only done some initial data exploration here. To really answer the questions above, it is necessary to perform a statistical analysis. What type of statistics did Domeignoz-Horta et al. perform, and what were their findings?*
 

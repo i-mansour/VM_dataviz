@@ -1,0 +1,123 @@
+---
+title: "Praktikum Activity 1"
+author: "Dr. India Mansour"
+date: "January 2021"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
+---
+
+## Overview
+
+The goal of this activity is to learn to use `ggplot2` for data visualization in R. Data visualization can be used to look for patterns in data -- this is called data exploration. Data visualization is also important for communicating research findings to others. When data is clearly, honestly, and, in the best case, also beautifully visualized, it is easier (for you and others that you might share it with) to understand.
+
+The [ggplot2](https://ggplot2.tidyverse.org/) package can be used to create a wide variety of  data visualizations, using "geoms" to represent data in different ways. Examples of different geoms are shown on the first page of this ggplot2 [Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf).
+
+In this exercise you will learn the basics of `ggplot2` by following along with the Data Visualization chapter of the book [R for Data Science](https://r4ds.had.co.nz/index.html) by Hadley Wickham (one of the tidyverse developers) and Garrett Grolemund. Then you will download a dataset from an experiment that investigated how soil microbial diversity affects carbon use efficiency and practice implementing your new data visualization skills.
+
+You can find the worksheet for this activity [here](https://docs.google.com/document/d/1bhtAQCIuzZ82dqD-FLB4_BVT4BPwBN0Sz9VdHbrGDFA/edit?usp=sharing).
+
+## Following along with "R for Data Science"
+
+### Installing tidyverse
+
+The package ggplot2 is part of [tidyverse](https://www.tidyverse.org/), a collection of packages for data science. First install the package:
+
+```{r eval = FALSE}
+install.packages("tidyverse")
+```
+
+then load the package:
+
+```{r}
+library(tidyverse)
+```
+
+### Let's learn how to use `ggplot2`!
+
+Open a new R script in RStudio so that you can save your work. If you have any future projects that will involve data, it is useful to have a script saved with working code that you can refer back to. **Hint:** you will have to produce data visualizations two times in this Praktikum, so *you* are a person that currently has future projects that involve data. 
+
+To make your R scripts even more useful for future you, you can add comments by using the # symbol -- that tells R not to evaluate that part. Here's an example:
+
+```{r}
+12 * 7 # This multiplies twelve by seven.
+```
+
+
+Open the [Data Visualization](https://r4ds.had.co.nz/data-visualisation.html) chapter. Read sections 3.1-3.3, and complete the exercises as you go along (pay particular attention to exercises in [section 3.3.1](https://r4ds.had.co.nz/data-visualisation.html#exercises-1)). **Tip:** at the right-hand side of the code chunks there is a "copy" button. You can directly copy the lines of code into your R script and keep notes with the comments.
+
+You will be working with a data set in the ggplot package called `mpg`, which has information about 38 different types of cars that was collected by the US EPA. (In case you don't find the topic of cars exciting, don't worry, later in the exercise you'll be working with ecological data!)
+
+Now read [section 3.4 - Common Problems](https://r4ds.had.co.nz/data-visualisation.html#common-problems) and feel a little better about yourself if you're having R troubles...we all have them. Now continue on to reading and completing the exercises in sections 3.5-3.6, to learn about geoms and facets. Once you've done this, you are ready for the next part of the exercise!
+
+## Data Visualization time
+
+Do y'all know about open science? This is a movement in the science world that values transparency throughout the scientific process. This can include publishing open access papers, making data and code available, and even posting information about experimental design and data collection. For our exercise today, we are going to use data that is publicly available through the Open Science Framework (OSF).
+
+This data comes from [Domeignoz-Horta et al. 2020](https://doi.org/10.1038/s41467-020-17502-z). It would be a good idea now to take a few minutes to skim through the paper. What was their research question? What was their experimental design? Take a look at their figures and their main findings.
+
+You can find the data from Domeignoz-Horta *et al.* 2020 via [OSF](https://osf.io/qmf8z/). Under 'Files' click on the '+' sign next to 'Data' and download the file **Fig.2.Data.txt**. Make sure to save it to a folder that you can find.
+
+### 1. Checking out the data
+
+Load the data into R (Hint: try using `read.table`). Now check it out. What are the dimensions of this dataframe? What are the column names? Now refer back to the Methods section of Domeignoz-Horta et al. 2020. What was their experimental design? Specifically, what treatments did they apply? In your dataframe, where do you find information about the treatments? What response variables did they measure? In your dataframe, where do you find information about the response variables? (*fill in your answers to these questions in the worksheet*)
+
+### 2. Comparing different ways to visualize the data
+
+The rest of this exercise will involve using `ggplot2` to visualize the relationship between diversity and carbon use efficiency (CUE) in different ways. For now, ignore the rest of the data and just use these two variables.
+
+Go back to [section 3.2.3 of R for Data Science](https://r4ds.had.co.nz/data-visualisation.html#a-graphing-template), or better, check out your script, if you need a reminder of the template for ggplot.
+
+Begin by creating a boxplot using `geom_boxplot` with these data. Now, using the same data, create a violin plot (`geom_violin`) and a plot showing the raw data points (`geom_jitter`). I would recommend adding `position=position_jitter(0.2)` in the aesthetics of your jitter plot to make it easier to see which points belong to each treatment group.
+
+*Copy your plots into the worksheet and write 1-2 sentence comparing them.*
+
+### 3. Error bars and combining geoms
+
+Some of these plots would be more useful if we could see the mean and standard error. You can add error bars to your plots like this:
+
+```{r eval = FALSE}
+ggplot(data = data, mapping = aes(X, Y)) +
+  geom_<GEOM_TYPE_HERE>() +
+  stat_summary(fun.data = mean_se, geom="errorbar", color="black")
+```
+
+Add error bars to your plots. How does this improve your ability to understand the data?
+
+What happens if you include multiple geoms in the same plot? Personally, I sometimes like violin plots (so I can better see the distribution of the data) with the raw data points plotted on top. Try combining geom_violin, geom_jitter and error bars in the same plot.
+
+*Paste this plot into the activity sheet. Do you think this combination is better or worse than the individual plots from Part 1? Why?*
+
+### 4. Including more variables
+
+So far we have only been using information about one of the experimental treatments: microbial diversity. Now let's make more informative plots by including information from more variables.
+
+The researchers who produced this data looked at two abiotic variables: temperature and moisture. Include these variables in your plot by mapping them to an aesthetic (e.g. color, shape). **Hint:** refer back to [section 3.3 of R for Data Science](https://r4ds.had.co.nz/data-visualisation.html#aesthetic-mappings).
+
+It might be easier to understand what's happening with all 3 of these variables if we look at some of the data separately. This can be achieved using facets (jump back over to [section 3.5 of R for Data Science](https://r4ds.had.co.nz/data-visualisation.html#facets) to jog your memory). Try using `facet_wrap` for one of these variables and `facet_grid` for both.
+
+Finally, create a plot where one abiotic variable is mapped to a plot aesthetic and the other is used to facet the plot.
+
+*Copy your final plot into the worksheet. Now that you have explored this data, what can you say about the effects of soil microbial diversity on CUE? Is this affected by temperature or moisture?*
+
+*Remember, we have only done some initial data exploration here. To really answer the questions above, it is necessary to perform a statistical analysis. What type of statistics did Domeignoz-Horta et al. perform, and what were their findings?*
+
+## References
+
+Domeignoz-Horta, L.A., Pold, G., Liu, XJ.A. *et al.* (2020). Microbial diversity drives carbon use efficiency in a model soil. *Nature Communications* 11, 3684.
+
+Wickham, H., Grolemund, G. (2016). R for Data Science. http://r4ds.had.co.nz/
+
+
+
+
+
+
+
+
